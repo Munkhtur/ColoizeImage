@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Home</h1>
+<h1>{{session['id']}}</h1>
+<form method="POST" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Upload a photo</legend>
+        <div class="form-group">
+            {{ form.picture.label() }}
+            {{ form.picture(class='form-control-file') }}
+            {% if form.picture.errors %}
+            {% for error in form.picture.errors %}
+            <span class='text-danger'>{{ error }}</span></br>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </fieldset>
+    <div class="content-section">
+        {% if image_names %}
+        {%for name in image_names%}
+        <div class="media mb-3">
+            <img class="" src="{{url_for('static', filename='pictures/' + name)}}">
+            <div>
+                <button>
+                    <a href="{{url_for('main.user_colorize', image=name)}}">Colorize</a>
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% if result %}
+        {%for name in result%}
+        <div class="media mb-3">
+            <img class="" src="{{url_for('static', filename='result/' + name)}}">
+            <button>
+                <a href="{{url_for('main.user_colorize', image=name)}}">Colorize</a>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</form>
+{%endblock%}

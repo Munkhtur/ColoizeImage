@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="image_container">
+    <div class="image">
+        <img class="" src="{{url_for('static', filename='pictures/' + '8ef93ef58b414855.jpg')}}">
+        <div>
+            <button>
+                <a href="{{url_for('main.user_colorize', image=name)}}">Colorize</a>
+            </button>
+        </div>
+    </div>
+    <div class="image">
+        <img class="" src="{{url_for('static', filename='pictures/' + '8ef93ef58b414855.jpg')}}">
+        <div>
+            <button>
+                <a href="{{url_for('main.user_colorize', image=name)}}">Colorize</a>
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock content %}
